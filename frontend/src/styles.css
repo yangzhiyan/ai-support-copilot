@@ -1,0 +1,73 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: #172033;
+  background: #f5f7fb;
+  font-family:
+    Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(24, 144, 255, 0.12), rgba(82, 196, 26, 0.08)),
+    #f5f7fb;
+}
+
+.app-content {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 56px 0;
+}
+
+.intro {
+  max-width: 760px;
+  margin-bottom: 32px;
+}
+
+.intro h1.ant-typography {
+  margin: 0;
+  color: #0f172a;
+  font-size: 42px;
+  line-height: 1.18;
+  letter-spacing: 0;
+}
+
+.intro .ant-typography {
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.eyebrow {
+  color: #1677ff;
+  font-weight: 700;
+}
+
+.status-section {
+  margin-bottom: 24px;
+}
+
+.status-card,
+.feature-grid .ant-card {
+  border-radius: 8px;
+  border: 1px solid #e6ebf2;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.feature-grid .ant-card {
+  height: 100%;
+}
+
+@media (max-width: 640px) {
+  .app-content {
+    width: min(100% - 24px, 1120px);
+    padding: 32px 0;
+  }
+
+  .intro h1.ant-typography {
+    font-size: 30px;
+  }
+}
