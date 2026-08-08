@@ -1,0 +1,70 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.conversationPanel {
+  @include mixins.panel-shell;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.conversationHeader {
+  padding: vars.$space-9;
+  border-bottom: 1px solid vars.$color-border-subtle;
+
+  :global(h2.ant-typography) {
+    @include mixins.panel-heading;
+  }
+}
+
+.ticketId {
+  display: inline-block;
+  margin-bottom: vars.$space-2;
+  color: vars.$color-primary;
+  font-weight: 700;
+}
+
+.messageList {
+  display: grid;
+  align-content: start;
+  gap: vars.$space-7;
+  padding: vars.$space-9;
+}
+
+.messageRow {
+  display: grid;
+  grid-template-columns: 36px minmax(0, 1fr);
+  gap: vars.$space-5;
+  max-width: 780px;
+}
+
+.messageRowAgent {
+  margin-left: min(12%, 72px);
+}
+
+.messageBubble {
+  padding: vars.$space-6 vars.$space-7;
+  border: 1px solid vars.$color-border-message;
+  border-radius: vars.$radius-panel;
+  background: vars.$color-surface-subtle;
+
+  .messageRowAgent & {
+    background: vars.$color-surface-primary;
+  }
+
+  :global(.ant-typography) {
+    margin-bottom: 0;
+  }
+}
+
+.messageMeta {
+  @include mixins.spread-row;
+}
+
+@include mixins.mobile {
+  .messageRow,
+  .messageRowAgent {
+    max-width: 100%;
+    margin-left: 0;
+  }
+}

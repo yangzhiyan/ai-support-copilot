@@ -1,0 +1,44 @@
+@use "./variables" as vars;
+
+@mixin panel-shell {
+  min-width: 0;
+  border: 1px solid vars.$color-border;
+  border-radius: vars.$radius-panel;
+  background: vars.$color-surface;
+}
+
+@mixin title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: vars.$space-5;
+  padding: vars.$space-8;
+  border-bottom: 1px solid vars.$color-border-subtle;
+}
+
+@mixin panel-heading {
+  margin: 0;
+  color: vars.$color-heading;
+  font-size: 18px;
+  line-height: 1.35;
+  letter-spacing: 0;
+}
+
+@mixin spread-row($gap: vars.$space-5) {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: $gap;
+}
+
+@mixin tablet {
+  @media (max-width: vars.$breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media (max-width: vars.$breakpoint-mobile) {
+    @content;
+  }
+}

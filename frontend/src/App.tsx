@@ -1,97 +1,40 @@
-import { CheckCircleTwoTone, CloudUploadOutlined, MessageOutlined, BarChartOutlined } from "@ant-design/icons";
-import { Alert, Card, Col, Layout, Row, Space, Spin, Statistic, Typography } from "antd";
-import { useEffect, useState } from "react";
-
-type HealthResponse = {
-  status: string;
-  message: string;
-};
+import { Layout, Typography } from "antd";
+import { useMemo, useState } from "react";
+import { ConversationPanel } from "./components/ConversationPanel";
+import { ReplyPanel } from "./components/ReplyPanel";
+import { TicketList } from "./components/TicketList";
+import { mockTickets } from "./data/mockTickets";
+import styles from "./App.module.scss";
 
 const { Content } = Layout;
-const { Title, Paragraph, Text } = Typography;
+const { Text, Title } = Typography;
 
 function App() {
-  const [loading, setLoading] = useState(true);
-  const [health, setHealth] = useState<HealthResponse | null>(null);
-  const [error, setError] = useState("");
+  const [selectedTicketId, setSelectedTicketId] = useState(mockTickets[0]?.id ?? "");
 
-  useEffect(() => {
-    fetch("/health")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`HTTP ${response.status}`);
-        }
-        return response.json() as Promise<HealthResponse>;
-      })
-      .then((data) => {
-        setHealth(data);
-        setError("");
-      })
-      .catch((reason: unknown) => {
-        setError(reason instanceof Error ? reason.message : "无法连接后端服务");
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  const selectedTicket = useMemo(
+    () => mockTickets.find((ticket) => ticket.id === selectedTicketId) ?? mockTickets[0],
+    [selectedTicketId]
+  );
 
   return (
-    <Layout className="app-shell">
-      <Content className="app-content">
-        <section className="intro">
-          <Space direction="vertical" size={16}>
-            <Text className="eyebrow">AI Support Copilot</Text>
-            <Title level={1}>企业 AI 智能客服与知识库系统</Title>
-            <Paragraph>
-              企业上传知识文档后，用户可以向 AI 提问，系统将基于企业资料回答，并标注引用来源。
-            </Paragraph>
-          </Space>
-        </section>
+    <Layout className={styles.appShell}>
+      <header className={styles.appHeader}>
+        <div>
+          <Text className={styles.eyebrow}>AI Support Copilot</Text>
+          <Title level={1}>企业客服智能工作台</Title>
+        </div>
+        <Text className={styles.headerMeta}>静态 Demo · TypeScript 模拟数据</Text>
+      </header>
 
-        <section className="status-section">
-          <Card className="status-card">
-            <Space direction="vertical" size={16}>
-              <Text strong>后端连接状态</Text>
-              {loading ? (
-                <Space>
-                  <Spin />
-                  <Text>正在连接服务...</Text>
-                </Space>
-              ) : health?.status === "ok" ? (
-                <Alert
-                  showIcon
-                  type="success"
-                  message={
-                    <Space>
-                      <CheckCircleTwoTone twoToneColor="#22c55e" />
-                      <Text strong>{health.message}</Text>
-                    </Space>
-                  }
-                />
-              ) : (
-                <Alert type="error" showIcon message="服务连接失败" description={error} />
-              )}
-            </Space>
-          </Card>
-        </section>
-
-        <Row gutter={[16, 16]} className="feature-grid">
-          <Col xs={24} md={8}>
-            <Card>
-              <Statistic title="文档上传" value="知识库" prefix={<CloudUploadOutlined />} />
-            </Card>
-          </Col>
-          <Col xs={24} md={8}>
-            <Card>
-              <Statistic title="AI 问答" value="引用来源" prefix={<MessageOutlined />} />
-            </Card>
-          </Col>
-          <Col xs={24} md={8}>
-            <Card>
-              <Statistic title="管理员看板" value="高频问题" prefix={<BarChartOutlined />} />
-            </Card>
-          </Col>
-        </Row>
+      <Content className={styles.workspace}>
+        <TicketList
+          tickets={mockTickets}
+          selectedTicketId={selectedTicket.id}
+          onSelectTicket={setSelectedTicketId}
+        />
+        <ConversationPanel ticket={selectedTicket} />
+        <ReplyPanel suggestion={selectedTicket.aiSuggestion} />
       </Content>
     </Layout>
   );

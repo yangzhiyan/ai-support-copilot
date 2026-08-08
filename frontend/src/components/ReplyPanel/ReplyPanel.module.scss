@@ -1,0 +1,72 @@
+@use "../../styles/variables" as vars;
+@use "../../styles/mixins" as mixins;
+
+.replyPanel {
+  @include mixins.panel-shell;
+
+  display: flex;
+  flex-direction: column;
+  gap: vars.$space-8;
+  padding: vars.$space-8;
+}
+
+.panelTitleRow {
+  @include mixins.title-row;
+
+  margin: -18px -18px 0;
+
+  :global(h2.ant-typography) {
+    @include mixins.panel-heading;
+  }
+}
+
+.suggestionBlock {
+  display: grid;
+  gap: vars.$space-3;
+
+  :global(.ant-typography) {
+    margin-bottom: 0;
+  }
+}
+
+.confidenceRow {
+  @include mixins.spread-row;
+}
+
+.suggestionReply {
+  padding: vars.$space-7;
+  border: 1px solid vars.$color-border-success;
+  border-radius: vars.$radius-panel;
+  background: vars.$color-surface-success;
+  line-height: 1.8;
+
+  :global(.ant-typography) {
+    margin-bottom: 0;
+  }
+}
+
+.citationList {
+  display: grid;
+  gap: vars.$space-4;
+}
+
+.citationItem {
+  display: grid;
+  grid-template-columns: 20px minmax(0, 1fr);
+  gap: vars.$space-4;
+  padding: vars.$space-5;
+  border: 1px solid vars.$color-border-message;
+  border-radius: vars.$radius-panel;
+  background: vars.$color-surface-citation;
+
+  > div {
+    display: grid;
+    gap: vars.$space-1;
+  }
+}
+
+@include mixins.tablet {
+  .replyPanel {
+    grid-column: 1 / -1;
+  }
+}

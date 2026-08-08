@@ -1,0 +1,66 @@
+@use "./styles/variables" as vars;
+@use "./styles/mixins" as mixins;
+
+.appShell {
+  min-height: 100vh;
+  background: vars.$color-page-bg;
+}
+
+.appHeader {
+  @include mixins.spread-row(vars.$space-11);
+
+  align-items: flex-end;
+  padding: vars.$space-12 vars.$space-13 vars.$space-9;
+  border-bottom: 1px solid vars.$color-border;
+  background: vars.$color-surface;
+
+  :global(h1.ant-typography) {
+    margin: vars.$space-1 0 0;
+    color: vars.$color-heading;
+    font-size: 28px;
+    line-height: 1.25;
+    letter-spacing: 0;
+  }
+}
+
+.eyebrow {
+  color: vars.$color-primary;
+  font-weight: 700;
+}
+
+.headerMeta {
+  white-space: nowrap;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(260px, 320px) minmax(420px, 1fr) minmax(300px, 360px);
+  gap: vars.$space-7;
+  width: 100%;
+  min-height: calc(100vh - 105px);
+  padding: vars.$space-7;
+}
+
+@include mixins.tablet {
+  .workspace {
+    grid-template-columns: minmax(240px, 300px) minmax(0, 1fr);
+  }
+}
+
+@include mixins.mobile {
+  .appHeader {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: vars.$space-10 vars.$space-7 vars.$space-7;
+  }
+
+  .headerMeta {
+    white-space: normal;
+  }
+
+  .workspace {
+    grid-template-columns: 1fr;
+    min-height: auto;
+    padding: vars.$space-5;
+  }
+}
