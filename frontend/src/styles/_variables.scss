@@ -1,8 +1,17 @@
 $color-text: #172033;
+$color-text-secondary: #64748b;
 $color-heading: #0f172a;
 $color-primary: #1677ff;
 $color-page-bg: #f5f7fb;
+$color-surface: #ffffff;
+$color-surface-muted: #f8fafc;
+$color-surface-primary: #f0f7ff;
+$color-surface-warning: #fffbeb;
+$color-surface-danger: #fff1f2;
 $color-card-border: #e6ebf2;
+$color-border-subtle: #eef2f7;
+$color-warning: #f59e0b;
+$color-danger: #ef4444;
 $color-success: #22c55e;
 $shadow-card: 0 10px 30px rgba(15, 23, 42, 0.06);
 
@@ -10,8 +19,13 @@ $font-family-base: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
 
 $radius-card: 8px;
 $content-max-width: 1120px;
+$content-wide-max-width: 1480px;
 
 $space-4: 16px;
+$space-1: 4px;
+$space-2: 8px;
+$space-3: 12px;
+$space-5: 20px;
 $space-6: 24px;
 $space-8: 32px;
 $space-14: 56px;
