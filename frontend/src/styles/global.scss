@@ -1,0 +1,12 @@
+@use "./variables" as vars;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: vars.$color-text;
+  background: vars.$color-page-bg;
+  font-family: vars.$font-family-base;
+}

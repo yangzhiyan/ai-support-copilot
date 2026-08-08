@@ -1,6 +1,12 @@
-import { CheckCircleTwoTone, CloudUploadOutlined, MessageOutlined, BarChartOutlined } from "@ant-design/icons";
+import {
+  BarChartOutlined,
+  CheckCircleTwoTone,
+  CloudUploadOutlined,
+  MessageOutlined
+} from "@ant-design/icons";
 import { Alert, Card, Col, Layout, Row, Space, Spin, Statistic, Typography } from "antd";
 import { useEffect, useState } from "react";
+import styles from "./App.module.scss";
 
 type HealthResponse = {
   status: string;
@@ -36,11 +42,11 @@ function App() {
   }, []);
 
   return (
-    <Layout className="app-shell">
-      <Content className="app-content">
-        <section className="intro">
+    <Layout className={styles.appShell}>
+      <Content className={styles.appContent}>
+        <section className={styles.intro}>
           <Space direction="vertical" size={16}>
-            <Text className="eyebrow">AI Support Copilot</Text>
+            <Text className={styles.eyebrow}>AI Support Copilot</Text>
             <Title level={1}>企业 AI 智能客服与知识库系统</Title>
             <Paragraph>
               企业上传知识文档后，用户可以向 AI 提问，系统将基于企业资料回答，并标注引用来源。
@@ -48,8 +54,8 @@ function App() {
           </Space>
         </section>
 
-        <section className="status-section">
-          <Card className="status-card">
+        <section className={styles.statusSection}>
+          <Card className={styles.statusCard}>
             <Space direction="vertical" size={16}>
               <Text strong>后端连接状态</Text>
               {loading ? (
@@ -75,7 +81,7 @@ function App() {
           </Card>
         </section>
 
-        <Row gutter={[16, 16]} className="feature-grid">
+        <Row gutter={[16, 16]} className={styles.featureGrid}>
           <Col xs={24} md={8}>
             <Card>
               <Statistic title="文档上传" value="知识库" prefix={<CloudUploadOutlined />} />

@@ -1,0 +1,66 @@
+@use "./styles/variables" as vars;
+@use "./styles/mixins" as mixins;
+
+.appShell {
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(24, 144, 255, 0.12), rgba(82, 196, 26, 0.08)), vars.$color-page-bg;
+}
+
+.appContent {
+  width: min(vars.$content-max-width, calc(100% - 32px));
+  margin: 0 auto;
+  padding: vars.$space-14 0;
+}
+
+.intro {
+  max-width: 760px;
+  margin-bottom: vars.$space-8;
+
+  :global(h1.ant-typography) {
+    margin: 0;
+    color: vars.$color-heading;
+    font-size: 42px;
+    line-height: 1.18;
+    letter-spacing: 0;
+  }
+
+  :global(.ant-typography) {
+    font-size: 17px;
+    line-height: 1.8;
+  }
+}
+
+.eyebrow {
+  color: vars.$color-primary;
+  font-weight: 700;
+}
+
+.statusSection {
+  margin-bottom: vars.$space-6;
+}
+
+.statusCard {
+  @include mixins.card-frame;
+}
+
+.featureGrid {
+  :global(.ant-card) {
+    @include mixins.card-frame;
+
+    height: 100%;
+  }
+}
+
+@include mixins.mobile {
+  .appContent {
+    width: min(100% - 24px, vars.$content-max-width);
+    padding: vars.$space-8 0;
+  }
+
+  .intro {
+    :global(h1.ant-typography) {
+      font-size: 30px;
+    }
+  }
+}

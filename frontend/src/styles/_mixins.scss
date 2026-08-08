@@ -1,0 +1,13 @@
+@use "./variables" as vars;
+
+@mixin card-frame {
+  border: 1px solid vars.$color-card-border;
+  border-radius: vars.$radius-card;
+  box-shadow: vars.$shadow-card;
+}
+
+@mixin mobile {
+  @media (max-width: vars.$breakpoint-mobile) {
+    @content;
+  }
+}
